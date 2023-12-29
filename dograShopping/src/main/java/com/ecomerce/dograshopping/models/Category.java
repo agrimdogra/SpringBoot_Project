@@ -7,6 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @Setter
 @Entity
 @SuperBuilder
+@NoArgsConstructor
 public class Category extends BaseModel {
     private String name;
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
@@ -28,6 +30,4 @@ public class Category extends BaseModel {
         this.name = name;
     }
 
-    public Category() {
-    }
 }
