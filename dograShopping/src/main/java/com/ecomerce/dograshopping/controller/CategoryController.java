@@ -1,6 +1,7 @@
 package com.ecomerce.dograshopping.controller;
 
 import com.ecomerce.dograshopping.dtos.CreateCategoryDto;
+import com.ecomerce.dograshopping.dtos.responseDtos.CategoryResponse;
 import com.ecomerce.dograshopping.models.Category;
 import com.ecomerce.dograshopping.service.CategoryService;
 import lombok.AllArgsConstructor;
@@ -35,8 +36,9 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> getAllCategories(){
-        return categoryService.getAllCategories();
+    public List<CategoryResponse> getAllCategories(){
+        List<CategoryResponse> resp =  categoryService.getAllCategories();
+        return resp;
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,13 +21,19 @@ public class
    ProductController {
     ProductService productService;
 
-    public ProductController(@Qualifier("SelfProductService") ProductService productService) {     //FakeStoreProductService , SelfProductService
+    public ProductController(@Qualifier("FakeStoreProductService") ProductService productService) {     //FakeStoreProductService , SelfProductService
         this.productService = productService;
     }
 
     @GetMapping
     public List<ProductResponse> getAllProducts(){
         List<ProductResponse> products = productService.getAllProducts();
+//        List<ProductResponse> resp2 = new ArrayList<>();
+//        for (ProductResponse prod : products){
+//            resp2.add(prod);
+//        }
+//        resp2.remove(0);
+//        return resp2;
         return products;
     }
 

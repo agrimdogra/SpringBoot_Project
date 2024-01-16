@@ -3,14 +3,14 @@ package com.ecomerce.dograshopping.dtos.responseDtos;
 import com.ecomerce.dograshopping.models.Category;
 import com.ecomerce.dograshopping.models.Product;
 import com.ecomerce.dograshopping.thirdPartyClients.fakeStoreClient.FakeStoreProductDto;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductResponse {
     private String id;
     private String title;

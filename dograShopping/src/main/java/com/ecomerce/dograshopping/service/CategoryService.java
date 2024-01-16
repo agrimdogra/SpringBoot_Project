@@ -1,5 +1,7 @@
 package com.ecomerce.dograshopping.service;
 
+import com.ecomerce.dograshopping.dtos.responseDtos.CategoryResponse;
+import com.ecomerce.dograshopping.dtos.responseDtos.ProductResponse;
 import com.ecomerce.dograshopping.exceptions.CategoryAlreadyExistException;
 import com.ecomerce.dograshopping.models.Category;
 import com.ecomerce.dograshopping.models.Product;
@@ -10,9 +12,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Getter
@@ -40,14 +44,19 @@ public class CategoryService {
         return category.orElseThrow(()->new RuntimeException("category Not Found"));
     }
 
-    public List<Category> getAllCategories(){
+    public List<CategoryResponse> getAllCategories(){
         List<Category> categories =  categoryRepository.findAll();
+        List<CategoryResponse> resp = new ArrayList<>();
         for (Category category : categories){
             List<Product> prod =  category.getProducts();
+            List<ProductResponse> prodResp = prod.stream()
+                            .map(ProductResponse::SelfServiceProdtoProductResopnse)
+                            .toList();
+            resp.add(new CategoryResponse(category.getId(), prodResp));
         }
 
-        List<Product> products = categories.get(0).getProducts();
-        return categories;
+        //List<Product> products = categories.get(0).getProducts();
+        return resp;
     }
 
 
